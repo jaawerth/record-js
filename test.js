@@ -11,14 +11,14 @@ test("Can only use defined keys", function(t) {
   t.doesNotThrow(function() {
     item = createItem({foo: 1, bar: 2});
   }, 'can make item with properties under allowed keys, and assign new values to them');
-  t.equals(item.foo, 1);
-  t.equals(item.bar, 2);
+  t.equals(item.foo, 1, 'item.foo === 1');
+  t.equals(item.bar, 2, 'item.bar === 2');
 
   item.foo = 4;
   item.bar = 2;
 
-  t.equals(item.foo, 4);
-  t.equals(item.bar, 2);
+  t.equals(item.foo, 4, 'after assignment, item.foo === 4');
+  t.equals(item.bar, 2, 'after assignment, item.bar === 2');
 
   t.throws(function() {
     var item = createItem({foo: 1, bar: 2, baz: 3});
@@ -43,9 +43,9 @@ test('Default values work', function(t) {
   t.doesNotThrow(function() {
     stooges.foo = 1;
     stooges.bar = 11;
-  }, 'can assign to assignable');
+  }, 'Can assign to assignable');
   t.throws(function() {
     stooges.Moe = 'lamebrain!';
-  }, "Can't assign to the non-assignable defaults");
+  }, "Can NOT assign to the non-assignable defaults");
   t.end();
 });
